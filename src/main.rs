@@ -1,17 +1,16 @@
+use bytes::Buf;
 use hyper::service::{make_service_fn, service_fn};
-use hyper::{http, Body, Method, Request, Response, Server, StatusCode};
+use hyper::{header, http, Body, Method, Request, Response, Server, StatusCode};
 use std::convert::Infallible;
 use std::net::SocketAddr;
 
 async fn register(req: Request<Body>) -> Result<Response<Body>, http::Error> {
-    // Aggregate the body...
-    let whole_body = hyper::body::aggregate(req).await?;
-    // Decode as JSON...
-    let mut data: serde_json::Value = serde_json::from_reader(whole_body.reader())?;
-    // Change the JSON...
-    data["test"] = serde_json::Value::from("test_value");
-    // And respond with the new JSON.
-    let json = serde_json::to_string(&data)?;
+    let whole_body = hyper::body::aggregate(req).await.unwrap();
+
+    let mut data: serde_json::Value = serde_json::from_slice(whole_body.bytes()).unwrap();
+    data["response"] = serde_json::Value::from("Succesfully loged in");
+
+    let json = serde_json::to_string(&data).unwrap();
     let response = Response::builder()
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "application/json")
