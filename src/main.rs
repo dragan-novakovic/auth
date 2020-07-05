@@ -8,21 +8,22 @@ async fn register(req: Request<Body>) -> Result<Response<Body>, http::Error> {
     let whole_body = hyper::body::aggregate(req).await.unwrap();
 
     let mut data: serde_json::Value = serde_json::from_slice(whole_body.bytes()).unwrap();
-    data["response"] = serde_json::Value::from("Succesfully loged in");
 
-    let json = serde_json::to_string(&data).unwrap();
+    // 1. get username, password
+    // 2. store in mongodb
+    // 3. give back jwt after register
+
     let response = Response::builder()
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "application/json")
-        .body(Body::from(json))?;
+        .body(Body::from(serde_json::to_string(&data).unwrap()))?;
     Ok(response)
 }
 
 async fn router(req: Request<Body>) -> Result<Response<Body>, http::Error> {
     match (req.method(), req.uri().path()) {
-        (&Method::GET, "/") => Ok(Response::new(Body::from("Try POSTing data to /echo"))),
         (&Method::POST, "/register") => register(req).await,
-        _ => Ok(Response::new(Body::empty())),
+        _ => Ok(Response::new(Body::from("Wrong Route go to /register"))),
     }
 }
 
