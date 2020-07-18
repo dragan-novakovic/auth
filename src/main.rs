@@ -23,8 +23,6 @@ async fn main() {
     // Get a handle to the deployment.
     let client = Client::with_options(client_options).unwrap();
 
-    //TODO create new db and seed
-
     // Get a handle to a database.
     let db = client.database("AUTH-SERVICE");
 
