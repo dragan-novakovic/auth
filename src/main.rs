@@ -1,37 +1,41 @@
-use bytes::Buf;
+#[macro_use]
+extern crate serde_derive;
 use hyper::service::{make_service_fn, service_fn};
-use hyper::{header, http, Body, Method, Request, Response, Server, StatusCode};
+use hyper::Server;
+use mongodb::{options::ClientOptions, Client};
 use std::convert::Infallible;
 use std::net::SocketAddr;
+extern crate serde;
+extern crate serde_json;
 
-async fn register(req: Request<Body>) -> Result<Response<Body>, http::Error> {
-    let whole_body = hyper::body::aggregate(req).await.unwrap();
-
-    let mut data: serde_json::Value = serde_json::from_slice(whole_body.bytes()).unwrap();
-
-    // 1. get username, password
-    // 2. store in mongodb
-    // 3. give back jwt after register
-
-    let response = Response::builder()
-        .status(StatusCode::OK)
-        .header(header::CONTENT_TYPE, "application/json")
-        .body(Body::from(serde_json::to_string(&data).unwrap()))?;
-    Ok(response)
-}
-
-async fn router(req: Request<Body>) -> Result<Response<Body>, http::Error> {
-    match (req.method(), req.uri().path()) {
-        (&Method::POST, "/register") => register(req).await,
-        _ => Ok(Response::new(Body::from("Wrong Route go to /register"))),
-    }
-}
+mod models;
+mod routes;
 
 #[tokio::main]
 async fn main() {
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let mut client_options = ClientOptions::parse("mongodb://localhost:27017")
+        .await
+        .unwrap();
 
-    let make_svc = make_service_fn(|_conn| async { Ok::<_, Infallible>(service_fn(router)) });
+    client_options.app_name = Some("AUTH-SERVICE".to_string());
+
+    // Get a handle to the deployment.
+    let client = Client::with_options(client_options).unwrap();
+
+    //TODO create new db and seed
+
+    // Get a handle to a database.
+    let db = client.database("AUTH-SERVICE");
+
+    let make_svc = make_service_fn(|_conn| {
+        let db = db.clone();
+        async {
+            Ok::<_, Infallible>(service_fn(move |req| {
+                routes::router::router(req, db.to_owned())
+            }))
+        }
+    });
 
     let server = Server::bind(&addr).serve(make_svc);
 
