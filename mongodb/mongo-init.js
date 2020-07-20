@@ -8,3 +8,5 @@ db.createUser({
     },
   ],
 });
+
+db.test.insert({ test: "init" });
