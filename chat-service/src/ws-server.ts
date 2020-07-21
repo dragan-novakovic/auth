@@ -2,30 +2,30 @@ import { serve } from "https://deno.land/std/http/server.ts";
 import {
   acceptWebSocket,
   isWebSocketCloseEvent,
-  isWebSocketPingEvent,
   WebSocket,
   acceptable,
 } from "https://deno.land/std/ws/mod.ts";
+import { v4 } from "https://deno.land/std/uuid/mod.ts";
+
 import { handleMessageWS } from "./controllers/messageHandler.ts";
 import requestParser from "./utils/requestParser.ts";
 
+const currentUsers = new Map<string, WebSocket>();
+
 async function handleWs(sock: WebSocket) {
   console.log("socket connected!");
+
+  const uid = v4.generate();
+  currentUsers.set(uid, sock);
+
   try {
     for await (const ev of sock) {
       if (typeof ev === "string") {
-        handleMessageWS(ev as string);
-      } else if (ev instanceof Uint8Array) {
-        // binary message
-        console.log("ws:Binary", ev);
-      } else if (isWebSocketPingEvent(ev)) {
-        const [, body] = ev;
-        // ping
-        console.log("ws:Ping", body);
+        handleMessageWS(ev as string, currentUsers);
       } else if (isWebSocketCloseEvent(ev)) {
-        // close
         const { code, reason } = ev;
-        console.log("ws:Close", code, reason);
+        console.info("ws:Close", code, reason);
+        currentUsers.delete(uid);
       }
     }
   } catch (err) {
@@ -38,9 +38,8 @@ async function handleWs(sock: WebSocket) {
 }
 
 if (import.meta.main) {
-  /** websocket echo server */
   const port = Deno.args[0] || "8080";
-  console.log(`websocket server is running on :${port}`);
+  console.info(`WS server is running on :${port}`);
 
   for await (const req of serve(`:${port}`)) {
     const { conn, r: bufReader, w: bufWriter, headers } = req;
@@ -59,6 +58,7 @@ if (import.meta.main) {
         });
     } else {
       // API server
+      // scrape for diffrent service
       requestParser(req);
     }
   }

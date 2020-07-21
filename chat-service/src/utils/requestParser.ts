@@ -1,3 +1,5 @@
+// TODO  Delete Later
+
 import { ServerRequest, Response } from "https://deno.land/std/http/server.ts";
 
 enum METHOD {
@@ -44,6 +46,8 @@ export const getRouter = (req: ServerRequest) => {
 export const postRouter = (req: ServerRequest) => {};
 
 export default function requestParser(req: ServerRequest) {
+  // room
+  // room/1
   switch (req.method) {
     case METHOD.GET:
       return getRouter(req);
