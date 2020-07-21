@@ -4,7 +4,7 @@ const config: DenonConfig = {
   scripts: {
     start: {
       cmd: "./src/ws-server.ts",
-      desc: "Run my webserver",
+      desc: "WS server",
       allow: ["env", "write", "read", "net", "plugin"],
       unstable: true,
     },
