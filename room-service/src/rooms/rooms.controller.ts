@@ -7,41 +7,38 @@ import {
   Param,
   Delete,
   Put,
-} from '@nestjs/common';
-import { RoomsService } from './rooms.service';
+} from "@nestjs/common";
+import { RoomsService } from "./rooms.service";
 
-import { CreateRoomDto, UpdateRoomDto, QueryRoom } from './dto';
-import { Room } from './interfaces/rooms.interface';
+import { CreateRoomDto, QueryRoom } from "./dto";
+import { Room } from "./interfaces/rooms.interface";
 
-@Controller('rooms')
+@Controller("rooms")
 export class RoomsController {
   constructor(private roomsService: RoomsService) {}
-
-  @Post()
-  create(@Body() createRoomDto: CreateRoomDto): string {
-    return 'This action adds a new cat';
-  }
 
   @Get()
   findAll(@Query() query: QueryRoom): Promise<Room[]> {
     return this.roomsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): string {
-    return `This action returns a #${id} cat`;
+  @Get(":id")
+  findOne(@Param("id") id: string): Promise<Room> {
+    return this.roomsService.findOne(id);
   }
 
-  @Put(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateRoomDto: UpdateRoomDto,
-  ): string {
-    return `This action updates a #${id} cat`;
+  @Post()
+  create(@Body() createRoomDto: CreateRoomDto): Promise<Room> {
+    return this.roomsService.create(createRoomDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string): string {
-    return `This action removes a #${id} cat`;
+  @Put(":id")
+  update(@Param("id") id: string, @Body() updateRoomDto: Room): Promise<Room> {
+    return this.roomsService.update(updateRoomDto);
+  }
+
+  @Delete(":id")
+  remove(@Param("id") id: string): Promise<void> {
+    return this.roomsService.remove(id);
   }
 }
