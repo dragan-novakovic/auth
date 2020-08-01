@@ -5,6 +5,6 @@ export class Room {
   @Field({ nullable: false })
   id: string;
 
-  @Field({ nullable: true })
+  @Field()
   name?: string;
 }

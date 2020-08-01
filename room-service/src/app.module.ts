@@ -40,5 +40,6 @@ export class AppModule {
   constructor(private connection: Connection) {}
 }
 
-// Test Graphql
+// how should room Model look like?
+
 // Actual Data + Connect with chat-service
