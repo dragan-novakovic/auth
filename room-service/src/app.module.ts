@@ -39,3 +39,6 @@ import { RoomsModule } from "./rooms/rooms.module";
 export class AppModule {
   constructor(private connection: Connection) {}
 }
+
+// Test Graphql
+// Actual Data + Connect with chat-service
