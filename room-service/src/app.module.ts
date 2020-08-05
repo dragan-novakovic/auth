@@ -40,6 +40,7 @@ export class AppModule {
   constructor(private connection: Connection) {}
 }
 
-// how should room Model look like?
-
-// Actual Data + Connect with chat-service
+//TODO
+//1. Channel Model
+//2. User Model
+//3. Connect to sockets
