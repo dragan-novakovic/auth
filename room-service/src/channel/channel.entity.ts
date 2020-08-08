@@ -1,13 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: "rooms" })
-export class Room {
+@Entity({ name: "channels" })
+export class Channel {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
   name: string;
-
-  @Column("text", { array: true })
-  channels: string[];
 }
