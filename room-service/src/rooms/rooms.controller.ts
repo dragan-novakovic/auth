@@ -22,23 +22,26 @@ export class RoomsController {
     return this.roomsService.findAll();
   }
 
-  // @Get(":id")
-  // findOne(@Param("id") id: string): Promise<Room> {
-  //   return this.roomsService.findOne(id);
-  // }
+  @Get(":id")
+  findOne(@Param("id") id: string): Promise<IRoom> {
+    return this.roomsService.findOne(id);
+  }
 
-  // @Post()
-  // create(@Body() createRoomDto: CreateRoomDto): Promise<Room> {
-  //   return this.roomsService.create(createRoomDto);
-  // }
+  @Post()
+  create(@Body() createRoomDto: CreateRoomDto): Promise<IRoom> {
+    return this.roomsService.create(createRoomDto);
+  }
 
-  // @Put(":id")
-  // update(@Param("id") id: string, @Body() updateRoomDto: Room): Promise<Room> {
-  //   return this.roomsService.update(updateRoomDto);
-  // }
+  @Put(":id")
+  update(
+    @Param("id") id: string,
+    @Body() updateRoomDto: IRoom
+  ): Promise<IRoom> {
+    return this.roomsService.update(updateRoomDto);
+  }
 
-  // @Delete(":id")
-  // remove(@Param("id") id: string): Promise<void> {
-  //   return this.roomsService.remove(id);
-  // }
+  @Delete(":id")
+  remove(@Param("id") id: string): Promise<void> {
+    return this.roomsService.remove(id);
+  }
 }
