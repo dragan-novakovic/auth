@@ -5,9 +5,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { GraphQLModule } from "@nestjs/graphql";
 import { Connection } from "typeorm";
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-
 // Entites
 import { Room } from "./rooms/rooms.entity";
 
@@ -33,14 +30,11 @@ import { RoomsModule } from "./rooms/rooms.module";
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
 }
 
 //TODO
-//1. Channel Model
 //2. User Model
 //3. Connect to sockets
