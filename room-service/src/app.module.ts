@@ -6,7 +6,8 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { Connection } from "typeorm";
 
 // Entites
-import { Room } from "./rooms/rooms.entity";
+import { RoomEntity } from "./rooms/rooms.entity";
+import { ChannelEntity } from "./channel/channel.entity";
 
 // Modules
 import { RoomsModule } from "./rooms/rooms.module";
@@ -14,10 +15,10 @@ import { RoomsModule } from "./rooms/rooms.module";
 @Module({
   imports: [
     RoomsModule,
-    GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
-      sortSchema: true,
-    }),
+    // GraphQLModule.forRoot({
+    //   autoSchemaFile: join(process.cwd(), "src/schema.gql"),
+    //   sortSchema: true,
+    // }),
     MongooseModule.forRoot("mongodb://localhost:27017/CHAT-SERVICE"),
     TypeOrmModule.forRoot({
       type: "postgres",
@@ -26,7 +27,7 @@ import { RoomsModule } from "./rooms/rooms.module";
       username: "docker",
       password: "docker",
       database: "ROOM-SERVICE",
-      entities: [Room],
+      entities: [RoomEntity, ChannelEntity],
       synchronize: true,
     }),
   ],

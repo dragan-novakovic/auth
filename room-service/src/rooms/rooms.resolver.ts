@@ -1,9 +1,9 @@
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
 import { Inject } from "@nestjs/common";
 import { RoomsService } from "./rooms.service";
-import { Room } from "./rooms.model";
+import { RoomModel } from "./rooms.model";
 
-@Resolver((of) => Room)
+@Resolver((of) => RoomModel)
 export class RoomsResolver {
   constructor(@Inject(RoomsService) private roomService: RoomsService) {}
 
@@ -11,8 +11,8 @@ export class RoomsResolver {
   // async room(@Args("id") id: string): Promise<Room> {
   //   return this.roomService.findOne(id);
   // }
-  @Query((returns) => [Room])
-  async rooms(): Promise<Room[]> {
+  @Query((returns) => [RoomModel])
+  async rooms(): Promise<RoomModel[]> {
     return this.roomService.findAll();
   }
 

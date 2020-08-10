@@ -2,7 +2,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { ChannelEntity } from "../channel/channel.entity";
 
 @ObjectType()
-export class Room {
+export class RoomModel {
   @Field({ nullable: false })
   id: string;
 

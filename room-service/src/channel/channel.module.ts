@@ -3,10 +3,10 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { ChannelService } from "./channel.service";
 import { ChannelController } from "./channel.controller";
-import { Channel } from "./channel.entity";
+import { ChannelEntity } from "./channel.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Channel])],
+  imports: [TypeOrmModule.forFeature([ChannelEntity])],
   providers: [ChannelService],
   controllers: [ChannelController],
   exports: [TypeOrmModule],

@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { Room } from "../rooms/rooms.entity";
+import { RoomEntity } from "../rooms/rooms.entity";
 
 @Entity({ name: "channels" })
 export class ChannelEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne((type) => Room, (room) => room.channels)
-  room: Room;
+  @ManyToOne((type) => RoomEntity, (room) => room.channels)
+  room: RoomEntity;
 
   @Column()
   name: string;

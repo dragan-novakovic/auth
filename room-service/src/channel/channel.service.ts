@@ -3,14 +3,14 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
 import { IChannel } from "./interfaces/channel.interface";
-import { Channel } from "./channel.entity";
+import { ChannelEntity } from "./channel.entity";
 import { CreateChannelDto } from "./dto";
 
 @Injectable()
 export class ChannelService {
   constructor(
-    @InjectRepository(Channel)
-    private usersRepository: Repository<IChannel>
+    @InjectRepository(ChannelEntity)
+    private channelRepository: Repository<ChannelEntity>
   ) {}
 
   // findAll(): Promise<IChannel[]> {

@@ -2,35 +2,35 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import { Room as IRoom } from "./interfaces/rooms.interface";
-import { Room } from "./rooms.entity";
+import { IRoom } from "./interfaces/rooms.interface";
+import { RoomEntity } from "./rooms.entity";
 import { CreateRoomDto } from "./dto";
 
 @Injectable()
 export class RoomsService {
   constructor(
-    @InjectRepository(Room)
-    private usersRepository: Repository<Room>
+    @InjectRepository(RoomEntity)
+    private roomsRepository: Repository<RoomEntity>
   ) {}
 
   findAll(): Promise<IRoom[]> {
-    return this.usersRepository.find();
+    return this.roomsRepository.find();
   }
 
   findOne(id: string): Promise<IRoom> {
-    return this.usersRepository.findOne(id);
+    return this.roomsRepository.findOne(id);
   }
 
-  create(room: CreateRoomDto): Promise<Room> {
-    const newRoom = this.usersRepository.create(room);
-    return this.usersRepository.save(newRoom);
+  create(room: CreateRoomDto): Promise<IRoom> {
+    const newRoom = this.roomsRepository.create(room);
+    return this.roomsRepository.save(newRoom);
   }
 
-  update(room: Room): Promise<Room> {
-    return this.usersRepository.save(room);
+  update(room: IRoom): Promise<IRoom> {
+    return this.roomsRepository.save(room);
   }
 
   async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+    await this.roomsRepository.delete(id);
   }
 }

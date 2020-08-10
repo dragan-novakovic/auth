@@ -11,14 +11,14 @@ import {
 import { RoomsService } from "./rooms.service";
 
 import { CreateRoomDto, QueryRoom } from "./dto";
-import { Room } from "./interfaces/rooms.interface";
+import { IRoom } from "./interfaces/rooms.interface";
 
 @Controller("rooms")
 export class RoomsController {
   constructor(private roomsService: RoomsService) {}
 
   @Get()
-  findAll(@Query() query: QueryRoom): Promise<Room[]> {
+  findAll(@Query() query: QueryRoom): Promise<IRoom[]> {
     return this.roomsService.findAll();
   }
 

@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { Channel } from "../channel/channel.entity";
+import { ChannelEntity } from "../channel/channel.entity";
 
 @Entity({ name: "rooms" })
 export class RoomEntity {
@@ -9,6 +9,6 @@ export class RoomEntity {
   @Column()
   name: string;
 
-  @OneToMany((type) => Channel, (channel) => channel.room)
-  channels: Channel[];
+  @OneToMany((type) => ChannelEntity, (channel) => channel.room)
+  channels: ChannelEntity[];
 }
