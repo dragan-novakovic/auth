@@ -9,5 +9,6 @@ import { RoomsResolver } from "./rooms.resolver";
   imports: [TypeOrmModule.forFeature([Room])],
   providers: [RoomsService, RoomsResolver],
   controllers: [RoomsController],
+  exports: [TypeOrmModule],
 })
 export class RoomsModule {}

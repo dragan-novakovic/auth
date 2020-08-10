@@ -7,17 +7,17 @@ import { Room } from "./rooms.model";
 export class RoomsResolver {
   constructor(@Inject(RoomsService) private roomService: RoomsService) {}
 
-  @Query((returns) => Room)
-  async room(@Args("id") id: string): Promise<Room> {
-    return this.roomService.findOne(id);
-  }
+  // @Query((returns) => Room)
+  // async room(@Args("id") id: string): Promise<Room> {
+  //   return this.roomService.findOne(id);
+  // }
   @Query((returns) => [Room])
   async rooms(): Promise<Room[]> {
     return this.roomService.findAll();
   }
 
-  @Mutation((returns) => Room)
-  async create(@Args({ name: "name" }) name: string): Promise<Room> {
-    return this.roomService.create({ name });
-  }
+  // @Mutation((returns) => Room)
+  // async create(@Args({ name: "name" }) name: string): Promise<Room> {
+  //   return this.roomService.create({ name });
+  // }
 }

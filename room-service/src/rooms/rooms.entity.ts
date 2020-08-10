@@ -1,13 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Channel } from "../channel/channel.entity";
 
 @Entity({ name: "rooms" })
-export class Room {
+export class RoomEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
   name: string;
 
-  @Column("text", { array: true })
-  channels: string[];
+  @OneToMany((type) => Channel, (channel) => channel.room)
+  channels: Channel[];
 }

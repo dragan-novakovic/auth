@@ -13,24 +13,24 @@ export class ChannelService {
     private usersRepository: Repository<IChannel>
   ) {}
 
-  findAll(): Promise<IChannel[]> {
-    return this.usersRepository.find();
-  }
+  // findAll(): Promise<IChannel[]> {
+  //   return this.usersRepository.find();
+  // }
 
-  findOne(id: string): Promise<IChannel> {
-    return this.usersRepository.findOne(id);
-  }
+  // findOne(id: string): Promise<IChannel> {
+  //   return this.usersRepository.findOne(id);
+  // }
 
-  create(room: CreateChannelDto): Promise<Channel> {
-    const newRoom = this.usersRepository.create(room);
-    return this.usersRepository.save(newRoom);
-  }
+  // create(room: CreateChannelDto): Promise<Channel> {
+  //   const newRoom = this.usersRepository.create(room);
+  //   return this.usersRepository.save(newRoom);
+  // }
 
-  update(room: Channel): Promise<Channel> {
-    return this.usersRepository.save(room);
-  }
+  // update(room: Channel): Promise<Channel> {
+  //   return this.usersRepository.save(room);
+  // }
 
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
-  }
+  // async remove(id: string): Promise<void> {
+  //   await this.usersRepository.delete(id);
+  // }
 }

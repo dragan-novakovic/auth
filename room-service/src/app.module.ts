@@ -36,5 +36,4 @@ export class AppModule {
 }
 
 //TODO
-//2. User Model
 //3. Connect to sockets
