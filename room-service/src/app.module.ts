@@ -11,10 +11,12 @@ import { ChannelEntity } from "./channel/channel.entity";
 
 // Modules
 import { RoomsModule } from "./rooms/rooms.module";
+import { ChannelModule } from "./channel/channel.module";
 
 @Module({
   imports: [
     RoomsModule,
+    ChannelModule,
     // GraphQLModule.forRoot({
     //   autoSchemaFile: join(process.cwd(), "src/schema.gql"),
     //   sortSchema: true,

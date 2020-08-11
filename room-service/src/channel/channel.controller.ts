@@ -12,7 +12,7 @@ import { ChannelService } from "./channel.service";
 import { CreateChannelDto } from "./dto";
 import { IChannel } from "./interfaces/channel.interface";
 
-@Controller("rooms")
+@Controller("channel")
 export class ChannelController {
   constructor(private channelService: ChannelService) {}
 
