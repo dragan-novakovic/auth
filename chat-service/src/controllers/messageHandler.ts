@@ -18,8 +18,7 @@ type Message = {
   username: string;
 };
 
-// const DB_NAME = "CHAT_SERVICE"
-const db = client.database("AUTH-SERVICE");
+const db = client.database("CHAT_SERVICE");
 const messages = db.collection<MessageSchema>("messages");
 
 interface TestUserPayload {

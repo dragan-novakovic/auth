@@ -4,9 +4,19 @@ db.createUser({
   roles: [
     {
       role: "readWrite",
-      db: "AUTH-SERVICE",
+      db: "CHAT-SERVICE",
     },
   ],
 });
 
-db.test.insert({ test: "init" });
+db.messages.insert({
+  username: "admin",
+  roomId: "xxx",
+  message: "First Message",
+});
+
+db.messages.insert({
+  username: "admin2",
+  roomId: "xxx",
+  message: "Second Message",
+});

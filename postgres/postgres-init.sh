@@ -2,7 +2,7 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE TABLE test (id integer, name VARCHAR(50));
+    CREATE TABLE rooms (id UUID, name VARCHAR(50) roomId idk);
     INSERT INTO test (id, name) VALUES (11,'HELLO');
 EOSQL
 

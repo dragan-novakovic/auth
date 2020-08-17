@@ -1,8 +1,8 @@
-import { join } from "path";
+// import { join } from "path";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { GraphQLModule } from "@nestjs/graphql";
+// import { GraphQLModule } from "@nestjs/graphql";
 import { Connection } from "typeorm";
 
 // Entites
