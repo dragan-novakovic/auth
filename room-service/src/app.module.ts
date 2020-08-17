@@ -12,16 +12,20 @@ import { ChannelEntity } from "./channel/channel.entity";
 // Modules
 import { RoomsModule } from "./rooms/rooms.module";
 import { ChannelModule } from "./channel/channel.module";
+import { MessageModule } from "./message/message.module";
 
 @Module({
   imports: [
     RoomsModule,
     ChannelModule,
+    MessageModule,
     // GraphQLModule.forRoot({
     //   autoSchemaFile: join(process.cwd(), "src/schema.gql"),
     //   sortSchema: true,
     // }),
-    MongooseModule.forRoot("mongodb://localhost:27017/CHAT-SERVICE"),
+    MongooseModule.forRoot(
+      "mongodb://admin:admin@localhost:27017/CHAT-SERVICE"
+    ),
     TypeOrmModule.forRoot({
       type: "postgres",
       host: "localhost",

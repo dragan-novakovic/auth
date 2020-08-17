@@ -1,3 +1,5 @@
+db = db.getSiblingDB("CHAT-SERVICE");
+
 db.createUser({
   user: "admin",
   pwd: "admin",
