@@ -13,10 +13,24 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Center',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.width * 0.3,
+                      0,
+                      MediaQuery.of(context).size.width * 0.3,
+                      0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderSide: new BorderSide(color: Colors.teal),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
