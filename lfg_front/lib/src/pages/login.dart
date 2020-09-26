@@ -29,6 +29,40 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            border: Border(
+                              top: BorderSide(width: 1.0, color: Colors.grey),
+                              left: BorderSide(width: 1.0, color: Colors.grey),
+                              right: BorderSide(width: 1.0, color: Colors.grey),
+                              bottom:
+                                  BorderSide(width: 1.0, color: Colors.grey),
+                            ),
+                          ),
+                          margin: EdgeInsets.all(10.0),
+                          width: 48.0,
+                          height: 48.0,
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10.0),
+                          color: Colors.amber[600],
+                          width: 48.0,
+                          height: 48.0,
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10.0),
+                          color: Colors.amber[600],
+                          width: 48.0,
+                          height: 48.0,
+                        ),
+                      ],
+                    ))
               ],
             )
           ],

@@ -1,4 +1,4 @@
-import type { DenonConfig } from "https://deno.land/x/denon@2.4.0/mod.ts";
+import type { DenonConfig } from "https://deno.land/x/denon/mod.ts";
 
 const config: DenonConfig = {
   scripts: {
