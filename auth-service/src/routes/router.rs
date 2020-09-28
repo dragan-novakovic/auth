@@ -3,6 +3,13 @@ use mongodb::Database;
 
 use crate::routes::{login::login, register::register};
 
+// implement Outh google
+// implement Oauth facebook
+// implement Oauth Phone
+// implement 0auth Microsoft
+// implement 0auth Apple
+// implement Windows hello ?
+
 pub async fn router(req: Request<Body>, db: Database) -> Result<Response<Body>, http::Error> {
     match (req.method(), req.uri().path()) {
         (&Method::POST, "/register") => register(req, db).await,
